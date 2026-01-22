@@ -1,0 +1,79 @@
+students = []
+
+def addStudent():
+    student = {}
+    student['id'] = input("Enter Student ID: ")
+    student['name'] = input("Enter Name: ")
+    student['department'] = input("Enter Department: ")
+    student['level'] = int(input("Enter Level: "))
+    students.append(student)
+    print("Student added successfully!\n")
+
+def viewStudents():
+    if not students:
+        print("No student records found.\n")
+        return
+    for i, s in enumerate(students, 1):
+        print(f"\nStudent {i}:")
+        print(f"ID: {s['id']}")
+        print(f"Name: {s['name']}")
+        print(f"Department: {s['department']}")
+        print(f"Level: {s['level']}")
+
+def searchStudent():
+    sid = input("Enter Student ID to search: ")
+    for s in students:
+        if s['id'] == sid:
+            print("Student found!")
+            print(f"Name: {s['name']}")
+            print(f"Department: {s['department']}")
+            print(f"Level: {s['level']}")
+            return
+    print("Student not found.")
+
+def updateStudent():
+    sid = input("Enter Student ID to update: ")
+    for s in students:
+        if s['id'] == sid:
+            s['name'] = input("Enter new Name: ")
+            s['department'] = input("Enter new Department: ")
+            s['level'] = int(input("Enter new Level: "))
+            print("Student record updated!\n")
+            return
+    print("Student not found.")
+
+def deleteStudent():
+    sid = input("Enter Student ID to delete: ")
+    for s in students:
+        if s['id'] == sid:
+            students.remove(s)
+            print("Student record deleted!\n")
+            return
+    print("Student not found.")
+
+# Main menu
+while True:
+    print("\n--- Student Management System ---")
+    print("1. Add Student")
+    print("2. View Students")
+    print("3. Search Student")
+    print("4. Update Student")
+    print("5. Delete Student")
+    print("6. Exit")
+    choice = input("Enter your choice: ")
+
+    if choice == '1':
+        addStudent()
+    elif choice == '2':
+        viewStudents()
+    elif choice == '3':
+        searchStudent()
+    elif choice == '4':
+        updateStudent()
+    elif choice == '5':
+        deleteStudent()
+    elif choice == '6':
+        print("Exiting program.")
+        break
+    else:
+        print("Invalid choice. Try again.")
